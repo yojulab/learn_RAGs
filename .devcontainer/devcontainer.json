@@ -22,9 +22,7 @@
 				"ms-toolsai.vscode-jupyter-cell-tags",
 				"ms-toolsai.jupyter-renderers",
 				"GitHub.copilot",
-				"GitHub.copilot-chat",
-				"ritwickdey.LiveServer",
-				"streetsidesoftware.code-spell-checker"
+				"GitHub.copilot-chat"
 			],
 			"settings": {
 				"python.defaultInterpreterPath": "/usr/local/bin/python",

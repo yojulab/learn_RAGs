@@ -8,8 +8,8 @@ services:
         GIT_URI: ${GIT_URI}      
     # depends_on:
     #   - db_mongodb
-    ports:
-      - "8000:8000"  # LangGraph Studio
+    # ports:
+      # - "8000:8000"  # LangGraph Studio
   #   - "8080:8080"  # VS Code 서버    
     environment:
       - AUTH=none  # VS Code 서버 인증 비활성화        

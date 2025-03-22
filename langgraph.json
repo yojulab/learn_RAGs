@@ -1,7 +1,7 @@
 {
   "graphs": {
-    "example_graph": "./examples/example_graph.py:app"
-    ,"youtube_rag": "./examples/youtube_rag_graph.py:app"
+    "example_graph": "./codes/langGraphs/example_graph.py:app"
+    ,"youtube_rag": "./codes/langGraphs/youtube_rag_graph.py:app"
   },
   "dependencies": ["."]
 }

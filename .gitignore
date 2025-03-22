@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 .gradle
 .env
+codes/langGraphs/.langgraph_api/*
+!dockers/.env

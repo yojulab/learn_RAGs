@@ -9,7 +9,7 @@ Original file is located at
 ## google 인증
 """
 
-!pip show google-auth
+# !pip show google-auth
 
 import os
 from google.colab import userdata
@@ -32,9 +32,9 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 # response = model.generate_content("What is the meaning of life?")
 # # response
 
-!pip install -q langchain-google-genai
+# !pip install -q langchain-google-genai
 
-!pip show langchain-google-genai google-ai-generativelanguage
+# !pip show langchain-google-genai google-ai-generativelanguage
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 
@@ -47,7 +47,7 @@ from IPython.display import Markdown
 result= llm. invoke("네이버에 대해 보고서를 작성해줘")
 Markdown (result .content)
 
-!pip install --quiet langchain tiktoken pypdf sentence_transformers chromadb langchain-community
+# !pip install --quiet langchain tiktoken pypdf sentence_transformers chromadb langchain-community
 
 from langchain. text_splitter import RecursiveCharacterTextSplitter
 from langchain. vectorstores import Chroma

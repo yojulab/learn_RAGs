@@ -43,7 +43,7 @@ with col1:
 with col2:
     st.image("https://www.sqlitetutorial.net/wp-content/uploads/2015/11/sqlite-sample-database-color.jpg", 
              caption="Chinook 데이터베이스 스키마", 
-             use_column_width=True)
+             use_container_width=True)
 
 # API Key input and model selection
 with st.sidebar:

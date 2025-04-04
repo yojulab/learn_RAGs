@@ -12,6 +12,7 @@ sentence_transformers
 chromadb
 faiss-cpu
 langchain-openai
+huggingface_hub
 
 # Data processing 
 pandas

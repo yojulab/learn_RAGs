@@ -13,6 +13,9 @@ chromadb
 faiss-cpu
 langchain-openai
 huggingface_hub
+google-generativeai 
+langchain-google-genai 
+langchain-cli
 
 # Data processing 
 pandas
@@ -27,3 +30,5 @@ pytest
 black
 isort
 pylint
+python-dotenv
+pypdf

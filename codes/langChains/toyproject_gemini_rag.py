@@ -9,14 +9,21 @@ Original file is located at
 ## google 인증
 """
 
+# Install required packages
+# !pip install google-generativeai langchain-google-genai python-dotenv
+
 # !pip show google-auth
 
 import os
-from google.colab import userdata
+# from google.colab import userdata
+from dotenv import load_dotenv
 import google.generativeai as genai
 
-# from : https://aistudio.google.com/apikey
-GOOGLE_API_KEY = userdata.get("GEMINI_API_KEY")
+# Load environment variables from .env file
+load_dotenv()
+
+# # from : https://aistudio.google.com/apikey
+GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY")
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
@@ -32,66 +39,63 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 # response = model.generate_content("What is the meaning of life?")
 # # response
 
-# !pip install -q langchain-google-genai
-
-# !pip show langchain-google-genai google-ai-generativelanguage
-
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro")
-llm.invoke("Write me a ballad about LangChain")
-
+result= llm.invoke("Write me a ballad about LangChain")
+print(result)
+print(20*f'-')
 from IPython.display import Markdown
-result= llm. invoke("네이버에 대해 보고서를 작성해줘")
-Markdown (result .content)
+result= llm.invoke("네이버에 대해 보고서를 작성해줘")
+print(result.content)
 
-# !pip install --quiet langchain tiktoken pypdf sentence_transformers chromadb langchain-community
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.vectorstores import Chroma
+from langchain.document_loaders import PyPDFLoader
 
-from langchain. text_splitter import RecursiveCharacterTextSplitter
-from langchain. vectorstores import Chroma
-from langchain. document_loaders import PyPDFLoader
-
-loader = PyPDFLoader ("./이슈리포트-2022-2호-혁신성장-정책금융-동향.pdf")
-pages = loader. load_and_split()
-text_splitter = RecursiveCharacterTextSplitter (chunk_size=500, chunk_overlap=50)
+loader = PyPDFLoader("codes/langChains/이슈리포트-2022-2호-혁신성장-정책금융-동향.pdf")
+pages = loader.load_and_split()
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 texts = text_splitter.split_documents(pages)
 
 # texts
-type(texts)
+print(type(texts))
 
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 model_name = "jhgan/ko-sbert-nli"
-model_kwargs = { 'device': 'cpu'}
-encode_kwargs = { 'normalize_embeddings': True}
+# model_kwargs = {'device': 'cpu'}
+model_kwargs = {}
+encode_kwargs = {'normalize_embeddings': True}
 
+os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN")
 hf = HuggingFaceEmbeddings(
   model_name=model_name, model_kwargs=model_kwargs, encode_kwargs=encode_kwargs
 )
 
-docsearch = Chroma. from_documents(texts, hf)
+docsearch = Chroma.from_documents(texts, hf)
 
-retriever = docsearch.as_retriever (search_type="mmr", search_kwargs={'k':3,'fetch_k': 10})
+retriever = docsearch.as_retriever(search_type="mmr", search_kwargs={'k':3,'fetch_k': 10})
 retriever.get_relevant_documents("혁신성장 정책금융에 대해서 설명해줘")
 
-from langchain. prompts import ChatPromptTemplate
-from langchain. schema. runnable import RunnableMap
+from langchain.prompts import ChatPromptTemplate
+from langchain.schema.runnable import RunnableMap
 template = """Answer the question as based only on the following context:
 {context}
 
 Question: {question}
 """
-prompt = ChatPromptTemplate. from_template(template)
+prompt = ChatPromptTemplate.from_template(template)
 
 gemini = ChatGoogleGenerativeAI(model="gemini-1.5-pro", temperature = 0)
 
-chain = RunnableMap ({
+chain = RunnableMap({
   "context": lambda x: retriever.get_relevant_documents(x['question']),
-  "question": lambda x: ['question']
+  "question": lambda x: x['question']
 }) | prompt | gemini
 
-# Markdown(chain. invoke({'question': "혁신성장 정책금융에 대해서 설명해줘"}) .content)
+# Markdown(chain.invoke({'question': "혁신성장 정책금융에 대해서 설명해줘"}).content)
 # This question cannot be answered from the given source. The provided text discusses innovation growth policy financing, focusing on the ICT industry. It mentions trends and the role of policy financing in supporting these industries. However, no specific question is posed within the provided text.
-Markdown(chain. invoke({'question': "혁신 ICT 대해 한국어로 설명"}) .content)
+print(chain.invoke({'question': "혁신 ICT 대해 한국어로 설명"}).content)
 

@@ -21,7 +21,7 @@ RUN git clone -b ${GIT_BRANCH_NAME} ${GIT_URI} ${APP_DIR_NAME}
 # Changes the working directory to /app/${REPO_NAME}. This uses the variable to dynamically set the directory path.
 WORKDIR /apps/${APP_DIR_NAME}
 
-# RUN pip install --no-cache-dir -r ./requirements.txt
+RUN pip install --no-cache-dir -r ./requirements.txt
 
 RUN rm -rf .git
 

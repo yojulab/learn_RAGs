@@ -1,34 +1,31 @@
 # RAG essentials
 langchain==0.3.20
-langchain-openai==0.3.8
+langchain-openai==0.2.14
 langchain_community==0.3.19
 langgraph==0.3.10
-langgraph-cli[inmem]
-youtube-search
-youtube-transcript-api
-pytube
-pypdf
-sentence_transformers
-chromadb
-faiss-cpu
-langchain-openai
-huggingface_hub
-google-generativeai 
-langchain-google-genai 
-langchain-cli
+langgraph-cli==0.1.77
+youtube-search==2.1.2
+youtube-transcript-api==1.0.2
+pytube==15.0.0
+pypdf==5.4.0
+sentence-transformers==4.0.2
+chromadb==0.5.23
+faiss-cpu==1.10.0
+huggingface-hub==0.30.1
+google-generativeai==0.8.4
+langchain-google-genai==2.0.10
+langchain-cli==0.0.36
 
 # Data processing 
-pandas
-numpy
-sqlite3
+pandas==2.0.3
+numpy==2.2.4
 
 # Web UI (optional)
-streamlit
+streamlit==1.43.2
 
 # Development tools
-pytest
-black
-isort
-pylint
-python-dotenv
-pypdf
+pytest==8.3.5
+black==25.1.0
+isort==6.0.1
+pylint==3.3.6
+python-dotenv==1.0.1

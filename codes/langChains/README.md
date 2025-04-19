@@ -16,9 +16,6 @@ Gemini API를 사용한 RAG(Retrieval-Augmented Generation) 구현 예제입니�
 
 **실행 방법:**
 ```bash
-# 필요 패키지 설치
-pip install langchain-google-genai google-generativeai tiktoken pypdf sentence_transformers chromadb langchain-community
-
 # 실행
 python toyproject_gemini_rag.py
 ```
@@ -37,9 +34,6 @@ python toyproject_gemini_rag.py
 
 **실행 방법:**
 ```bash
-# 필요 패키지 설치
-pip install langchain langchain-openai langchain-community faiss-cpu sqlite3
-
 # 환경 변수 설정
 export OPENAI_API_KEY="your-api-key-here"
 

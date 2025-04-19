@@ -13,9 +13,6 @@ This application allows users to query the Chinook music database using natural 
 1. **Clone the repository** (if you're using git)
 
 2. **Install required dependencies**:
-   ```
-   pip install streamlit langchain openai sqlite3
-   ```
 
 3. **Download the Chinook database**:
    - If not already included, download the Chinook SQLite database from [here](https://www.sqlitetutorial.net/wp-content/uploads/2018/03/chinook.zip)

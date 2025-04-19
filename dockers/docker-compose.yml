@@ -2,10 +2,6 @@ services:
   devs:
     build:
       context: .
-      args:
-        GIT_BRANCH_NAME: ${GIT_BRANCH_NAME}
-        APP_DIR_NAME: ${APP_DIR_NAME}      
-        GIT_URI: ${GIT_URI}      
     # depends_on:
     #   - db_mongodb
     command: sleep infinity

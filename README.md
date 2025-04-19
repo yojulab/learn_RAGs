@@ -10,9 +10,45 @@
 ~$ cp .env_copy .env
 ~$ vi .env
 OPENAI_API_KEY=<your api key>
-~$ langgraph dev --port 8000 --host 127.0.0.1
+~$ cd codes/langGraphs
+~codes/langGraphs$ langgraph dev --port 8000 --host 127.0.0.1
 ```
 @LangGraph Studio: https://smith.langchain.com/studio/?baseUrl=http://127.0.0.1:8000
+
+#### execute langChains
+```
+~$ cp .env_copy .env
+~$ vi .env
+OPENAI_API_KEY=<your api key>
+GEMINI_API_KEY=<your gemini api key>
+HF_TOKEN=<your huggingface token>
+~$ cd codes/langChains
+
+# Run Gemini RAG example
+~codes/langChains$ python toyproject_gemini_rag.py
+
+# Run SQL agent example
+~codes/langChains$ python toyproject_agent_prompttomakeSQL.py
+
+# For Jupyter notebook
+~codes/langChains$ jupyter notebook toyproject_gemini_rag.ipynb
+```
+
+#### execute streamlit_io
+```
+~$ cp .env_copy .env
+~$ vi .env
+OPENAI_API_KEY=<your api key>
+HUGGINGFACE_API_TOKEN=<your huggingface token>
+~$ cd codes/streamlit_io
+
+# Run OpenAI-based SQL agent Streamlit app
+~codes/streamlit_io$ streamlit run app_agent_prompttomakeSQL_openAI.py
+
+# Run HuggingFace-based SQL agent Streamlit app
+~codes/streamlit_io$ streamlit run app_agent_prompttomakeSQL_HF.py
+```
+Access the Streamlit app in your browser at http://localhost:8501
 
 # Codes Directory Overview
 
